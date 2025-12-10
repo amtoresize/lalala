@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeeSports Gateway Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+    h1 { color: #333; }
+    #result { margin-top: 20px; padding: 15px; background: white; border: 1px solid #ddd; border-radius: 5px; word-break: break-all; font-size: 1.1em; }
+    .error { color: red; font-weight: bold; }
+    .loading { color: #007bff; }
+    input { padding: 8px; width: 300px; }
+    button { padding: 8px 16px; background: #007bff; color: white; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>BeeSports Gateway URL Generator</h1>
+  <p>Masukkan channel ID (contoh: TNT-Sports-1, Sky-Sports-Main-Event, BT-Sport-1, dll.) atau gunakan parameter <code>?id=...</code> di URL.</p>
+
+  <input type="text" id="channelInput" placeholder="Masukkan channel ID" value="">
+  <button onclick="generateUrl()">Generate</button>
+
+  <div id="result"></div>
+
+  <script>
+    const BASE_URL = 'https://beesport.global';
+
+    // Ambil channelId dari URL query string (?id=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const channelIdFromUrl = urlParams.get('id');
+    if (channelIdFromUrl) {
+      document.getElementById('channelInput').value = channelIdFromUrl;
+      generateUrl(); // langsung jalankan saat halaman dibuka
+    }
+
+    async function generateUrl() {
+      const channelId = document.getElementById('channelInput').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!channelId) {
+        resultDiv.innerHTML = '<span class="error">Error: Masukkan channel ID!</span>';
+        return;
+      }
+
+      resultDiv.innerHTML = '<span class="loading">Loading... sedang mengambil gateway URL...</span>';
+
+      try {
+        // 1. GET /live-tv untuk ambil cookie + XSRF-TOKEN
+        const initResponse = await fetch(`${BASE_URL}/live-tv`, {
+          method: 'GET',
+          credentials: 'include', // agar cookie dikirim
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9'
+          }
+        });
+
+        if (!initResponse.ok) {
+          throw new Error(`HTTP ${initResponse.status}`);
+        }
+
+        // Ambil cookie dari response (browser otomatis simpan cookie)
+        // Untuk XSRF-TOKEN, ambil dari header Set-Cookie atau dari cookie yang sudah disimpan
+        const cookies = document.cookie.split('; ').reduce((acc, c) => {
+          const [key, val] = c.trim().split('=');
+          acc[key] = val;
+          return acc;
+        }, {});
+
+        let xsrfToken = cookies['XSRF-TOKEN'] ? decodeURIComponent(cookies['XSRF-TOKEN']) : null;
+
+        if (!xsrfToken) {
+          // Jika tidak ada di cookie, coba ambil dari response header (kadang tidak muncul di JS)
+          // Alternatif: kita pakai fallback ke manual extract dari Set-Cookie (tapi browser blokir)
+          // Untuk kasus ini, biasanya XSRF-TOKEN sudah tersimpan di cookie setelah GET pertama
+          throw new Error('Tidak menemukan XSRF-TOKEN. Coba refresh halaman atau gunakan VPN.');
+        }
+
+        // 2. POST ke /authorize-channel
+        const postData = {
+          channel: `https://pri8ahnsass.twinspeed.space/${channelId}/index.m3u8`
+        };
+
+        const authResponse = await fetch(`${BASE_URL}/authorize-channel`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+            'Accept': 'application/json, text/plain, */*',
+            'Origin': BASE_URL,
+            'Referer': `${BASE_URL}/live-tv`,
+            'X-XSRF-TOKEN': xsrfToken,
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify(postData)
+        });
+
+        if (!authResponse.ok) {
+          throw new Error(`Auth gagal - HTTP ${authResponse.status}`);
+        }
+
+        const authData = await authResponse.json();
+
+        if (!authData.server) {
+          throw new Error('Tidak ada server URL di response');
+        }
+
+        const gatewayUrl = authData.server.replace(/\\/g, '');
+        resultDiv.innerHTML = `<strong>Gateway URL:</strong><br><a href="${gatewayUrl}" target="_blank">${gatewayUrl}</a>`;
+      } catch (err) {
+        resultDiv.innerHTML = `<span class="error">Error: ${err.message}</span>`;
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
