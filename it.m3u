@@ -62,6 +62,6 @@ https://viamotionhsi.netplus.ch/live/eds/raiscuola/browser-dash/raiscuola.mpd
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 https://viamotionhsi.netplus.ch/live/eds/rainews/browser-dash/rainews.mpd
 
-#EXTINF:-1 tvg-id="RaiSport.it" group-title="SKY SPORT 🇮🇹" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Rai_Sport_-_Logo_2022.svg/512px-Rai_Sport_-_Logo_2022.svg.png",📺 Rai Sport
+#EXTINF:-1 tvg-id="RaiSport.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Rai_Sport_-_Logo_2022.svg/512px-Rai_Sport_-_Logo_2022.svg.png",📺 Rai Sport
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 https://viamotionhsi.netplus.ch/live/eds/raisport1/browser-dash/raisport1.mpd
