@@ -65,3 +65,45 @@ https://viamotionhsi.netplus.ch/live/eds/rainews/browser-dash/rainews.mpd
 #EXTINF:-1 tvg-id="RaiSport.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Rai_Sport_-_Logo_2022.svg/512px-Rai_Sport_-_Logo_2022.svg.png",📺 Rai Sport
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 https://viamotionhsi.netplus.ch/live/eds/raisport1/browser-dash/raisport1.mpd
+
+#EXTINF:-1 tvg-id="20.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/TF1_logo_2006.svg/512px-TF1_logo_2006.svg.png",📺 TF1
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/tf1hd/browser-dash/tf1hd.mpd
+
+#EXTINF:-1 tvg-id="France.24.Francais.HD.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/33/France_2_logo.png",📺 FRANCE 2
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/france2hd/browser-dash/france2hd.mpd
+
+#EXTINF:-1 tvg-id="France.24.Francais.HD.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",📺 FRANCE 3
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/france3hd/browser-dash/france3hd.mpd
+
+#EXTINF:-1 tvg-id="France.24.Francais.HD.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/73/France_4_logo.png",📺 FRANCE 4
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/france4hd/browser-dash/france4hd.mpd
+
+#EXTINF:-1 tvg-id="France.24.Francais.HD.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/01/France_5_logo.png",📺 FRANCE 5
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/france5hd/browser-dash/france5hd.mpd
+
+#EXTINF:-1 tvg-id="20.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Logo_6ter_2016.svg/512px-Logo_6ter_2016.svg.png",📺 6TER
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/6ter/browser-dash/6ter.mpd
+
+#EXTINF:-1 tvg-id="20.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/it/a/a2/M6_logo_new-1-.png",📺 M6
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/m6hd/browser-dash/m6hd.mpd
+
+#EXTINF:-1 tvg-id="20.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",📺 W9
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/w9/browser-dash/w9.mpd
+
+#EXTINF:-1 tvg-id="20.it" group-title="" tvg-logo="https://img.favpng.com/5/20/0/infosport-television-channel-logo-sky-news-png-favpng-EMzQL770aZF3qpYbYswTzvLmx.jpg",📺 INFOSPORT+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b002b139dcc7149a8c1de34168332842:a77fda48fd486c153e8cb4d93a51831c
+https://viamotionhsi.netplus.ch/live/eds/infosportplus/browser-dash-VMX/infosportplus.mpd
+
+#EXTINF:-1 tvg-id="20.it" group-title="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/L_Equipe_Logo.svg/512px-L_Equipe_Logo.svg.png",📺 L'EQUIPE
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+https://viamotionhsi.netplus.ch/live/eds/lequipe21/browser-dash/lequipe21.mpd
